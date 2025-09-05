@@ -5,9 +5,7 @@
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M.CHEDOTAL</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@1&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="app"></div>
@@ -17,8 +15,36 @@
 
 <style>
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Bebas Neue', cursive;
+/* :root {
+  --primary1-color: #8C622E;
+  --primary2-color: #8C7B65;
+  --neutral-color: #8C480D;
+  --secondary1-color: #592405;
+  --secondary2-color: #261007;
+} */
+
+/* :root {
+  --primary1-color: #001724;
+  --primary2-color: #15676D;
+  --neutral-color: #FFEBD1;
+  --secondary1-color: #FF7A00;
+  --secondary2-color: #79280E;
+} */
+
+/* :root {
+  --primary1-color: #0A0F27;
+  --primary2-color: #001952;
+  --neutral-color: #043775;
+  --secondary1-color: #12769E;
+  --secondary2-color: #FCF6F3;
+} */
+
+:root {
+  --background-color: #18534f;
+  --primary-color: #f6d888;
+  --secondary-color: #0b1f93;
+  --accent-color: #ecf8f6;
+  --text-color: #fee99f;
 }
 
 a {
@@ -27,11 +53,19 @@ a {
   color : inherit;
 }
 
-a:hover {
-  font-size: larger;
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+  cursor: none;
+  font-family: "clash display", sans-serif;
+  font-size: 1.5rem;
+  /* Ajout du grain */
+  background-image: url("@/assets/nnnoise2.svg");
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  background-blend-mode:screen;
+  
+  /* padding-left: 4rem; */
+  /* padding-right: 4rem; */
 }
-/* body { */
-  /* font-family: 'Bebas Neue'; */
-/* } */
-
 </style>
