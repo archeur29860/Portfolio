@@ -8,37 +8,37 @@ const events = ref([
 {
     id: 0,
     date: 'Juin 2022',
-    title: 'Lycée Naval de Brest - Baccalauréat spécialité NSI, Mathématiques',
+    title: 'Baccalauréat spécialité NSI, Mathématiques',
     description: "Obtention du baccalauréat (spécialités Numérique & Sciences Informatiques et Mathématiques) avec mention.",
-    url: '@/assest/42logo.png'
+    url: new URL('@/assets/kheuneuLogo.png', import.meta.url).href
 },
 {
     id: 1,
     date: 'Septembre 2022 - Avril 2024',
     title: 'École 42 - Tronc commun',
     description: "Formation intensive en informatique (C, C++, Python, algorithmique, projets collaboratifs).",
-    url: '@/assest/42logo.png'
+    url: new URL('@/assets/42logo.png', import.meta.url).href
   },
 {
     id: 2,
     date: 'Mai 2024 - Novembre 2024',
     title: 'Stage Développeur Fullstack - Crédit Mutuel, Arkéa',
     description: "Développement d\'applications web (Vue.js et Java/Spring), intégration CI/CD et bonnes pratiques en équipe agile.",
-    url: '@/assest/42logo.png'
+    url: new URL('@/assets/arkeaLogo.jpg', import.meta.url).href
   },
 {
     id: 3,
     date: 'Décembre 2024 - Aujourd\'hui',
     title: 'Poursuite à l\'École 42 - Master 2 équivalent',
     description: "Spécialisation en web, data et intelligence artificielle, avec mise en pratique sur des projets avancés (Kubernetes, ArgoCD, CI/CD, IA).",
-    url: '@/assest/42logo.png'
+    url: new URL('@/assets/42logo.png', import.meta.url).href
   },
 {
     id: 4,
     date: 'NOW',
     title: 'Recherche d\'alternance (2 ans)',
     description: "Je cherche une alternance en développement web / data / IA, disponible à partir de septembre 2025 ou janvier 2026, idéalement en Bretagne.",
-    url: '@/assest/42logo.png'
+    url: ''
   },
 ]);
 

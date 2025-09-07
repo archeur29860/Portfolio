@@ -1,4 +1,4 @@
-<script setup lang="ts">
+cd pageOn<script setup lang="ts">
 import HeroBanner from '@/vues/layout/heroBanner.vue';
 import Timeline from '@/vues/layout/timeline.vue';
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue';
@@ -140,6 +140,7 @@ onBeforeUnmount(() => {
 });
 </script>
 <template>
+<div class="mainpage">
 <HeroBanner class="herobanner"/>
 <Timeline :progressThrough="progressThrough/25"/>
 <p>space</p>
@@ -197,13 +198,21 @@ onBeforeUnmount(() => {
 <p>space</p>
 <p>space</p>
 <p class="end">space</p>
+</div>
 </template>
 
 <style scoped>
+.mainpage {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
 
 .herobanner {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 </style>

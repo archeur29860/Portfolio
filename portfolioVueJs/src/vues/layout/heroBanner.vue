@@ -29,7 +29,7 @@ const avatarUrl = new URL('@/assets/mchedota_s.jpg', import.meta.url).href;
             <h1 class="name">CHEDOTAL Matéo</h1>
         </div>
         <p class="description">
-            Étudiant Bac+5 à l’école 42, passionné par Python, la data et l’IA. Curieux et rigoureux, j’aime relever des défis techniques et collaborer sur des projets innovants.
+            Étudiant Bac+5 à l'école 42, passionné par Python, la data et l'IA. Curieux et rigoureux, j'aime relever des défis techniques et collaborer sur des projets innovants.
         </p>
     </div>
 </section>
@@ -38,7 +38,7 @@ const avatarUrl = new URL('@/assets/mchedota_s.jpg', import.meta.url).href;
 <style scoped>
 .hero-banner {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -56,7 +56,7 @@ const avatarUrl = new URL('@/assets/mchedota_s.jpg', import.meta.url).href;
     width: 25rem;
     height: 25rem;
     border-radius: 1rem;;
-    animation: appear 1s ease 0s 1 normal;
+    /* animation: appear 1s ease 0s 1 normal; */
     /* object-fit: cover; */
 }
 
