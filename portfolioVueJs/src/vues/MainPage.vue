@@ -1,45 +1,10 @@
-cd pageOn<script setup lang="ts">
-import HeroBanner from '@/vues/layout/heroBanner.vue';
-import Timeline from '@/vues/layout/timeline.vue';
+<script setup lang="ts">
+import MenuBurger from '@/components/MenuBurger.vue';
+import HeroBanner from '@/components/HeroBanner.vue';
+import Timeline from '@/components/Timeline.vue';
+import Projects from '@/components/ProjectsBrowser.vue';
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue';
-
-function disableScroll() {
-    document.body.style.overflow = 'hidden';
-}
-
-function enableScroll() {
-    document.body.style.overflow = '';
-}
-
-function scrollToTitle() {
-    const avatar = document.querySelector('.avatar');
-    if (avatar) {
-        avatar.scrollIntoView({
-            behavior: 'smooth',
-            block: 'end'
-        });
-    }
-}
-
-function scrollToProgressbar() {
-  const progressbar = document.querySelector('#top-silde-progressbar');
-  if (progressbar) {
-      progressbar.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-      });
-  }
-}
-
-function scrollToEnd() {
-    const avatar = document.querySelector('.end');
-    if (avatar) {
-        avatar.scrollIntoView({
-            behavior: 'smooth',
-            block: 'end'
-        });
-    }
-}
+import { disableScroll, enableScroll, pages} from '@/types/scrollTo.ts';
 
 const progressThrough = ref(0);
 
@@ -49,17 +14,6 @@ watch(progressThrough, (newVal) => {
         upline.style.width = `${10 + (newVal * 0.8)}%`;
       }
 });
-
-
-interface PageFunctions {
-  [key: number]: () => void;
-}
-
-const pages: PageFunctions = {
-  0: scrollToTitle,
-  1: scrollToProgressbar,
-  2: scrollToEnd
-};
 
 const pageOn = ref(0)
 const totalCard = 4;
@@ -81,6 +35,22 @@ function scrollToPage(direction: string) {
         pageOn.value += 1;
         pages[pageOn.value]();
     }
+}
+
+function handleEmitMenu(id: number) {
+  pageOn.value = id;
+  pages[id]();
+  switch(id) {
+    case 0:
+        progressThrough.value = 0;
+        break;
+    case 1:
+        progressThrough.value = 0;
+        break;
+  default:
+        progressThrough.value = 100;
+    break;
+  }
 }
 
 let wheelTimeout: number | null = null;
@@ -126,7 +96,7 @@ function handleTouchEnd(event: TouchEvent) {
 
 onMounted(() => {
     disableScroll();
-    scrollToTitle();
+    pages[0]()
     window.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('touchstart', handleTouchStart, { passive: false });
     window.addEventListener('touchend', handleTouchEnd, { passive: false });
@@ -139,65 +109,13 @@ onBeforeUnmount(() => {
     enableScroll();
 });
 </script>
+
 <template>
+<MenuBurger @scrollToPageEmit="handleEmitMenu"/>
 <div class="mainpage">
 <HeroBanner class="herobanner"/>
 <Timeline :progressThrough="progressThrough/25"/>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p>space</p>
-<p class="end">space</p>
+<Projects />
 </div>
 </template>
 

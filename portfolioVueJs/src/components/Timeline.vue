@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import CardItem from '@/vues/layout/cardItem.vue';
+import { ref, computed } from 'vue';
+import CardItem from '@/components/CardItem.vue';
 
 const props = defineProps<{progressThrough: number}>();
 
@@ -42,6 +42,8 @@ const events = ref([
   },
 ]);
 
+const findEvent = computed(() => {
+  return events.value.find(event => event.id === props.progressThrough);});
 </script>
 
 <template>
@@ -50,19 +52,14 @@ const events = ref([
     <div class="progressbar-timeline"></div>
     <div class="progressbar-upline"></div>
 </div>
-<!-- <p>progress: {{ progressThrough }}</p> -->
 <div class="carditem-wrapper">
-  <div v-for="e in events">
     <CardItem
-      :title="e.title"
-      :date="e.date"
-      :description="e.description"
-      :url="e.url"
-      v-if="e.id === progressThrough"
+      :title="findEvent?.title"
+      :date="findEvent?.date"
+      :description="findEvent?.description"
+      :url="findEvent?.url"
     />
   </div>
-  <div v-if="progressThrough === 100"><h3>Comming soon</h3></div>
-</div>
 </template>
 
 <style scoped>

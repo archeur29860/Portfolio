@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { watch } from 'vue';
+
 interface CardItemProps {
     title: string;
     date: string;
@@ -7,12 +9,10 @@ interface CardItemProps {
 }
 
 const props = defineProps < CardItemProps > ();
-// const imgUrl = new URL(import.meta.url);
 </script>
 
 <template>
 <div class="carditem">
-    props.url {{ props.url }}
     <h3 class="date">{{ props.date }}</h3>
     <h3 class="title">{{ props.title }}</h3>
     <div class="description-wrapper">

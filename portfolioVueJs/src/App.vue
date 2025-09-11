@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import { onMounted } from 'vue';
 
 onMounted(() => {
@@ -42,5 +41,6 @@ onMounted(() => {
   opacity: 0.5;
   /* Ensures the cursor doesn't interfere with mouse events on other elements */
   pointer-events: none;
+  z-index: 10000;
 }
 </style>
