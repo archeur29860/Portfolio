@@ -37,7 +37,7 @@ function scrollToProgressbar() {
 }
 
 function scrollToProjects() {
-    const avatar = document.querySelector('.projects-carousel');
+    const avatar = document.querySelector('.projects-carousel-wrapper');
     if (avatar) {
         avatar.scrollIntoView({
             behavior: 'smooth',

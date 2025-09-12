@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // import { ref } from 'vue';
+import ProjectPreview from '@/components/ProjectPreview.vue';
 
 const allProjects = [
   {
@@ -25,15 +26,22 @@ const allProjects = [
 </script>
 
 <template>
-    <div class="projects-carousel" v-for="project in allProjects">
-        <span>{{ project.title }}</span>
+    <div class="projects-carousel-wrapper">
+      <ProjectPreview  v-for="project in allProjects"
+      :key="project.id"
+      :id="project.id"
+      :title="project.title"
+      :description="project.description"/>
     </div>
 </template>
 
 <style scoped>
-.projects-carousel {
+.projects-carousel-wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 20px;
     width: 100vw;
     height: 100vh;
 }
