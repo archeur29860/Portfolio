@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { watch } from 'vue';
+import '@/assets/css/animations.css';
 
 interface CardItemProps {
     title: string;
@@ -9,12 +10,27 @@ interface CardItemProps {
 }
 
 const props = defineProps < CardItemProps > ();
+
+
+//animation card item on change
+watch(props, (newVal) => {
+  console.log('Événement actuel :', newVal);
+  const titleElement = document.querySelector('.title');
+    if (titleElement) {
+        titleElement.classList.remove('animate-reavealUp');
+        // Force reflow to restart the animation
+        // void titleElement.offsetWidth;
+        titleElement.classList.add('animate-reavealUp');
+    }
+});
 </script>
 
 <template>
 <div class="carditem">
-    <h3 class="date">{{ props.date }}</h3>
-    <h3 class="title">{{ props.title }}</h3>
+    <div>
+        <div class="date">{{ props.date }}</div>
+        <div class="title">{{ props.title }}</div>
+    </div>
     <div class="description-wrapper">
         <div class="description">{{ props.description }}</div>
         <div class="parent" :class="{invisible: !props.url}">
@@ -38,43 +54,45 @@ const props = defineProps < CardItemProps > ();
     /* border: 1px solid var(--accent-color); */
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    margin: 2rem;
-    height: 100vh;
+    box-sizing: border-box;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
     border-radius: 1rem;
+    box-sizing: border-box;
+    /* border: solid 1px red; */
 }
 
+/* .carditem > div {
+    border: solid 1px blue;
+} */
+
 .date {
-    position: relative;
     font-weight: 600;
     font-size: 7rem;
     opacity: 0.3;
-    margin: 0;
 }
 
 .title {
     font-weight: 700;
     font-family: 'Clash Display', sans-serif;
     font-size: 4rem;
-    margin: 0;
 }
 
 .description-wrapper {
-    /* border: 1px solid var(--primary-color); */
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: flex-end;
     justify-content: space-between;
-    padding-right: 5rem;
-    margin-top: 5rem;
-}
+    width: 100%;
+    padding: 2rem;
+    color : var(--accent-color);
+    }
 
 .description {
-    /* border: 1px solid var(--secondary-color); */
-    margin: 0px;
-    padding: 0px;
-    max-width: 60%;
+    box-sizing: border-box;
 }
 
 .logo {
@@ -84,7 +102,7 @@ const props = defineProps < CardItemProps > ();
 }
 
 .parent {
-    /* border: 1px solid var(--secondary-color); */
+    flex-shrink: 0;;
     display: grid;
     grid-template-columns: repeat(4, 0.5fr) 1fr 0.5fr;
     grid-template-rows: 0.5fr 1fr 0.5fr repeat(2, 0.25fr) 0.5fr;

@@ -27,7 +27,7 @@ function scrollToTitle() {
 }
 
 function scrollToProgressbar() {
-  const progressbar = document.querySelector('#top-silde-progressbar');
+  const progressbar = document.querySelector('.timeline-wrapper');
   if (progressbar) {
       progressbar.scrollIntoView({
           behavior: 'smooth',
@@ -37,7 +37,7 @@ function scrollToProgressbar() {
 }
 
 function scrollToProjects() {
-    const avatar = document.querySelector('.projects-carousel-wrapper');
+    const avatar = document.querySelector('.projects-browser');
     if (avatar) {
         avatar.scrollIntoView({
             behavior: 'smooth',
