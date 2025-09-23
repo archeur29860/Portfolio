@@ -3,6 +3,8 @@ import MenuBurger from '@/components/MenuBurger.vue';
 import HeroBanner from '@/components/HeroBanner.vue';
 import Timeline from '@/components/Timeline.vue';
 import Projects from '@/components/ProjectsBrowser.vue';
+import ContactForm from '@/components/ContactForm.vue';
+import SkillsShowcase from '@/components/SkillsShowcase.vue';
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue';
 import { disableScroll, enableScroll, pages} from '@/types/scrollTo.ts';
 
@@ -49,7 +51,7 @@ function handleEmitMenu(id: number) {
         break;
   default:
         progressThrough.value = 100;
-    break;
+        break;
   }
 }
 
@@ -115,7 +117,9 @@ onBeforeUnmount(() => {
 <div class="mainpage">
 <HeroBanner class="herobanner"/>
 <Timeline :progressThrough="progressThrough/25"/>
+<SkillsShowcase />
 <Projects />
+<ContactForm />
 </div>
 </template>
 

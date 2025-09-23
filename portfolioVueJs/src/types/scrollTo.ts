@@ -5,7 +5,9 @@ interface PageFunctions {
 export const pages: PageFunctions = {
     0: scrollToTitle,
     1: scrollToProgressbar,
-    2: scrollToProjects
+    2: scrollToSkillsShowcase,
+    3: scrollToProjects,
+    4: scrollToContactForm
   };  
 
 export function disableScroll() {
@@ -36,10 +38,30 @@ function scrollToProgressbar() {
   }
 }
 
+function scrollToSkillsShowcase() {
+    const skills = document.querySelector('.skillsShowcase-wrapper');
+    if (skills) {
+        skills.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
 function scrollToProjects() {
-    const avatar = document.querySelector('.projects-browser');
-    if (avatar) {
-        avatar.scrollIntoView({
+    const project = document.querySelector('.projects-browser');
+    if (project) {
+        project.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+function scrollToContactForm() {
+    const contact = document.querySelector('.contactForm-wrapper');
+    if (contact) {
+        contact.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
         });

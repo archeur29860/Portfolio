@@ -12,17 +12,17 @@ interface CardItemProps {
 const props = defineProps < CardItemProps > ();
 
 
-//animation card item on change
-watch(props, (newVal) => {
-  console.log('Événement actuel :', newVal);
-  const titleElement = document.querySelector('.title');
-    if (titleElement) {
-        titleElement.classList.remove('animate-reavealUp');
-        // Force reflow to restart the animation
-        // void titleElement.offsetWidth;
-        titleElement.classList.add('animate-reavealUp');
-    }
-});
+// //animation card item on change
+// watch(props, (newVal) => {
+//   console.log('Événement actuel :', newVal);
+//   const titleElement = document.querySelector('.title');
+//     if (titleElement) {
+//         titleElement.classList.remove('animate-reavealUp');
+//         // Force reflow to restart the animation
+//         // void titleElement.offsetWidth;
+//         titleElement.classList.add('animate-reavealUp');
+//     }
+// });
 </script>
 
 <template>
@@ -86,12 +86,14 @@ watch(props, (newVal) => {
     flex-wrap: nowrap;
     align-items: flex-end;
     justify-content: space-between;
+    gap: 1rem;
     width: 100%;
-    padding: 2rem;
+    font-size: 2rem;
     color : var(--accent-color);
     }
 
 .description {
+    text-align: justify;
     box-sizing: border-box;
 }
 

@@ -17,7 +17,7 @@ const allProjects: ProjectPreviewProps[] = [{
         description: "Ft_transcendence est un projet web complet dont l’objectif était de créer une application multi-utilisateurs avec des fonctionnalités interactives comme l'implémentation du jeu PONG et l’intégration de services externes.<br></br>\
         Le projet a été développé avec Django pour le backend, SQL pour la base de données, et HTML, CSS et JavaScript pour le frontend. Il utilise Docker pour la conteneurisation et intègre des APIs externes, comme Google pour l’authentification, permettant de gérer l’ensemble des interactions frontend-backend de manière fluide.",
         urlGithub: 'https://github.com/archeur29860/ft-transcendence',
-        urlImage: new URL('@/assets/pictures/42logo.png', import.meta.url).href
+        urlImage: new URL('@/assets/pictures/PONG.png', import.meta.url).href
     },
     {
         id: 1,
@@ -31,7 +31,7 @@ const allProjects: ProjectPreviewProps[] = [{
     {
         id: 2,
         title: 'Stage Fullstack - Arkéa',
-        skills: ['Vue.js', 'Java 21', 'Postman', 'Cypress', 'Apicurio', 'Méthode Agile'],
+        skills: ['Vue.js', 'Java 21', 'Postman', 'Cypress', 'VeeValidate', 'Apicurio', 'Méthode Agile'],
         description: 'Lors de mon stage de 6 mois chez Arkéa, j’ai participé à la refonte technique et ergonomique d’un outil interne vieillissant, marqué par une forte dette technique. J’ai travaillé sur un environnement moderne combinant Vue.js pour le front et Java 21 pour le back, avec l’appui d’outils comme Postman, Cypress et Apicurio pour les tests et la documentation des APIs.<br></br>\
         Ce stage m’a permis de renforcer mes compétences techniques tout en évoluant dans un cadre agile, favorisant la collaboration, la communication et la qualité du produit livré.',
         urlImage: new URL('@/assets/pictures/arkeaLogo.jpg', import.meta.url).href

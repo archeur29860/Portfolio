@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import '@/assets/css/animations.css';
 import {
     ref,
     defineEmits
@@ -25,7 +26,9 @@ const emit = defineEmits<{
     <div class="menu">
         <h3 @click.prevent="emit('scrollToPageEmit', 0)">Home</h3>
         <h3 @click.prevent="emit('scrollToPageEmit', 1)">Mon parcours</h3>
-        <h3 @click.prevent="emit('scrollToPageEmit', 2)">Mes projets</h3>
+        <h3 @click.prevent="emit('scrollToPageEmit', 2)">Mes langages</h3>
+        <h3 @click.prevent="emit('scrollToPageEmit', 3)">Mes projets</h3>
+        <h3 @click.prevent="emit('scrollToPageEmit', 4)">Contact</h3>
     </div>
 
 </div>
@@ -46,7 +49,7 @@ const emit = defineEmits<{
     z-index: 1000;
     opacity: 50%;
     transition: all 0.75s ease;
-
+    
 }
 
 .line {
@@ -74,18 +77,20 @@ const emit = defineEmits<{
 }
 
 .menu {
+    backdrop-filter: blur(1rem);
+    background-color: color-mix(in srgb, black 25%, transparent);
     position: fixed;
     top: 0;
     right: 0;
-    width: 50vw;
+    width: 100vw;
     height: 100vh;
-    background-color: var(--background-color);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
     z-index: 999;
+    animation: fadeIn 0.5s ease;
 }
 
 </style>
