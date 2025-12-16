@@ -24,11 +24,11 @@ const emit = defineEmits<{
 </div>
 <div v-if="isOpen">
     <div class="menu">
-        <h3 @click.prevent="emit('scrollToPageEmit', 0)">Home</h3>
-        <h3 @click.prevent="emit('scrollToPageEmit', 1)">Mon parcours</h3>
-        <h3 @click.prevent="emit('scrollToPageEmit', 2)">Mes langages</h3>
-        <h3 @click.prevent="emit('scrollToPageEmit', 3)">Mes projets</h3>
-        <h3 @click.prevent="emit('scrollToPageEmit', 4)">Contact</h3>
+        <h3 @click.prevent="toggleMenu(); emit('scrollToPageEmit', 0)">Acceuil</h3>
+        <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 1)">Mon parcours</h3>
+        <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 2)">Mes langages</h3>
+        <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 3)">Mes projets</h3>
+        <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 4)">Contact</h3>
     </div>
 
 </div>

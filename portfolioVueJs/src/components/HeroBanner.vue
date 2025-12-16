@@ -42,7 +42,7 @@ const avatarUrl = new URL('@/assets/pictures/mchedota_s.jpg',
 <style scoped>
 .hero-banner {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -57,8 +57,8 @@ const avatarUrl = new URL('@/assets/pictures/mchedota_s.jpg',
 }
 
 .avatar {
-    width: 25rem;
-    height: 25rem;
+    width: 100%;
+    height: auto;
     border-radius: 1rem;
 }
 
@@ -69,7 +69,8 @@ const avatarUrl = new URL('@/assets/pictures/mchedota_s.jpg',
     align-items: flex-start;
     justify-content: center;
     text-align: left;
-    max-width: 50%;
+    max-width: clamp(90%, 50vw, 50%);
+
 }
 
 .name-wrapper {
@@ -107,6 +108,10 @@ const avatarUrl = new URL('@/assets/pictures/mchedota_s.jpg',
 }
 
 .parent {
+    flex-shrink: 0;
+    width: clamp(18rem, 50vw, 32rem);
+    aspect-ratio: 5 / 6;
+    /* gap: clamp(0.5rem, 1vw, 1rem); */
     display: grid;
     grid-template-columns: repeat(3, 0.5fr) repeat(2, 1fr);
     grid-template-rows: 0.4fr repeat(2, 1fr) repeat(2, 0.5fr) 0.2fr;
@@ -200,6 +205,13 @@ const avatarUrl = new URL('@/assets/pictures/mchedota_s.jpg',
     grid-area: 5 / 1 / 7 / 2;
     opacity: 0;
     background-color: var(--secondary-color);
+}
+
+@media (max-width: 700px) {
+    .hero-banner {
+        flex-direction: column;
+    }
+    
 }
 
 </style>
