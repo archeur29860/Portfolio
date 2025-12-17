@@ -125,11 +125,12 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .mainpage {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  align-items: center;
+  justify-content: center;
 }
 
 .herobanner {

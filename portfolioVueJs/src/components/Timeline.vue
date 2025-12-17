@@ -70,7 +70,7 @@ const findEvent = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   box-sizing: border-box;
   gap: 2rem;
   width: 100vw;
@@ -81,7 +81,7 @@ const findEvent = computed(() => {
 .carditem-wrapper {
   box-sizing: border-box;
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .progressbar-wrapper {

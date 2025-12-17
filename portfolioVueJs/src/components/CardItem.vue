@@ -26,14 +26,14 @@ const props = defineProps < CardItemProps > ();
 </script>
 
 <template>
-<div class="carditem">
+<div class="carditem" :class="{ description_without_img: !props.url }">
     <div>
         <div class="date">{{ props.date }}</div>
         <div class="title">{{ props.title }}</div>
     </div>
     <div class="description-wrapper">
         <div class="description">{{ props.description }}</div>
-        <div class="parent" :class="{invisible: !props.url}">
+        <div class="parent" :class="{'invisible': !props.url}">
             <div class="div1 radius"></div>
             <div class="div2 radius"></div>
             <div class="div3 radius"></div>
@@ -55,21 +55,16 @@ const props = defineProps < CardItemProps > ();
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    border-radius: 1rem;
-    box-sizing: border-box;
-    /* border: solid 1px red; */
+    /* box-sizing: border-box; */
 }
-
-/* .carditem > div {
-    border: solid 1px blue;
-} */
 
 .date {
     font-weight: 600;
-    font-size: 7rem;
+    font-size: 4rem;
     opacity: 0.3;
 }
 
@@ -92,6 +87,12 @@ const props = defineProps < CardItemProps > ();
     color : var(--accent-color);
     }
 
+.description_without_img {
+    justify-content: flex-start;
+    gap: 5rem;
+}
+
+
 .description {
     text-align: justify;
     box-sizing: border-box;
@@ -113,7 +114,8 @@ const props = defineProps < CardItemProps > ();
 }
 
 .invisible {
-    opacity: 0;
+    /* opacity: 0; */
+    display: none;
 }
 
 .radius {
@@ -130,4 +132,17 @@ const props = defineProps < CardItemProps > ();
 .div8 { grid-area: 5 / 6 / 6 / 7; background-color:  var(--text-color); }
 .div9 { grid-area: 6 / 5 / 7 / 7; background-color:  var(--secondary-color); opacity: 0.2;}
 .div10 { grid-area: 6 / 3 / 7 / 4; background-color:  var(--primary-color); }
+
+@media (max-width: 700px) {
+    .carditem {
+        justify-content: space-around;
+    }
+    .description-wrapper {
+        flex-direction: column;
+    }
+    .description {
+        text-align: left;
+        font-size: medium;
+    }
+}
 </style>
