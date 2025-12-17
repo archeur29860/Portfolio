@@ -22,20 +22,25 @@ const emit = defineEmits<{
     <div :class="{line: true, line2: isOpen}"></div>
     <div :class="{line: true, line3: isOpen}"></div>
 </div>
-<div v-if="isOpen">
-    <div class="menu">
-        <h3 @click.prevent="toggleMenu(); emit('scrollToPageEmit', 0)">Acceuil</h3>
-        <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 1)">Mon parcours</h3>
-        <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 2)">Mes langages</h3>
-        <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 3)">Mes projets</h3>
-        <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 4)">Contact</h3>
-    </div>
+<transition name="fade">
+  <div v-if="isOpen" class="menu">
+      <h3 @click.prevent="toggleMenu(); emit('scrollToPageEmit', 0)">Acceuil</h3>
+      <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 1)">Mon parcours</h3>
+      <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 2)">Mes langages</h3>
+      <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 3)">Mes projets</h3>
+      <h3 @click.prevent="toggleMenu();emit('scrollToPageEmit', 4)">Contact</h3>
+  </div>
+</transition>
 
-</div>
 </template>
 
   
 <style scoped>
+
+h3 {
+  font-size: clamp(2rem, 5vh, 4rem);
+}
+
 .menu-burger {
     position: fixed;
     top: 0;
@@ -78,7 +83,7 @@ const emit = defineEmits<{
 
 .menu {
     backdrop-filter: blur(1rem);
-    background-color: color-mix(in srgb, black 25%, transparent);
+    background-color: color-mix(in srgb, black 50%, transparent);
     position: fixed;
     top: 0;
     right: 0;
@@ -90,7 +95,18 @@ const emit = defineEmits<{
     justify-content: center;
     gap: 2rem;
     z-index: 999;
-    animation: fadeIn 0.5s ease;
 }
+
+/* fade in / fade out */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+}
+
 
 </style>

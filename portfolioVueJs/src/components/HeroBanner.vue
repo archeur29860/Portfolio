@@ -90,7 +90,8 @@ const avatarUrl = new URL(
 .name {
   font-weight: 700;
   font-family: 'Clash Display', sans-serif;
-  font-size: 8rem;
+  /* font-size: 8rem; */
+  font-size: clamp(4rem, 10vw, 8rem);
   transform: translateY(10rem);
   white-space: nowrap;
 }
