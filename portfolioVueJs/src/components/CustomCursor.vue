@@ -4,62 +4,111 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 const cursorRef = ref<HTMLElement | null>(null);
 const cursor2Ref = ref<HTMLElement | null>(null);
-const isVisible = ref(window.innerWidth > 768); // visible seulement sur grand écran
 
-function updateVisibility() {
-  isVisible.value = window.innerWidth > 1920;
+/**
+ * Visible seulement sur desktop
+ */
+const isDesktop = ref(window.innerWidth > 768);
+
+function updateViewport() {
+  isDesktop.value = window.innerWidth > 768;
 }
 
-window.addEventListener('resize', updateVisibility);
+/**
+ * Mouse positions
+ */
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let bigX = mouseX;
+let bigY = mouseY;
 
-onUnmounted(() => {
-  window.removeEventListener('resize', updateVisibility);
-});
+let animationId: number | null = null;
 
 onMounted(() => {
-  if (!isVisible.value) return;
+  window.addEventListener('resize', updateViewport);
 
-  const small = cursorRef.value!;
-  const big = cursor2Ref.value!;
+  const small = cursorRef.value;
+  const big = cursor2Ref.value;
   if (!small || !big) return;
-
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let bigX = mouseX;
-  let bigY = mouseY;
 
   const smallHalf = small.offsetWidth / 2;
   const bigHalf = big.offsetWidth / 2;
 
+  /**
+   * Mouse move
+   */
   const handleMouseMove = (e: MouseEvent) => {
+    if (!isDesktop.value) return;
+
     mouseX = e.clientX;
     mouseY = e.clientY;
+
+    small.style.opacity = '0.9';
+    big.style.opacity = '0.5';
+
     small.style.transform = `translate3d(${mouseX - smallHalf}px, ${mouseY - smallHalf}px, 0)`;
   };
 
-  document.addEventListener('mousemove', handleMouseMove);
-
+  /**
+   * Smooth follow animation
+   */
   const speed = 0.12;
-  function animate() {
-    bigX += (mouseX - bigX) * speed;
-    bigY += (mouseY - bigY) * speed;
-    big.style.transform = `translate3d(${bigX - bigHalf}px, ${bigY - bigHalf}px, 0)`;
-    requestAnimationFrame(animate);
-  }
+  const animate = () => {
+    if (isDesktop.value) {
+      bigX += (mouseX - bigX) * speed;
+      bigY += (mouseY - bigY) * speed;
+
+      big.style.transform = `translate3d(${bigX - bigHalf}px, ${bigY - bigHalf}px, 0)`;
+    }
+
+    animationId = requestAnimationFrame(animate);
+  };
+
+  /**
+   * Window focus / blur
+   */
+  const handleBlur = () => {
+    small.style.opacity = '0';
+    big.style.opacity = '0';
+  };
+
+  const handleFocus = () => {
+    if (!isDesktop.value) return;
+    small.style.opacity = '0.9';
+    big.style.opacity = '0.5';
+  };
+
+  /**
+   * Hide when leaving window
+   */
+  const handleMouseLeave = () => {
+    small.style.opacity = '0';
+    big.style.opacity = '0';
+  };
+
+  document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('mouseleave', handleMouseLeave);
+  window.addEventListener('blur', handleBlur);
+  window.addEventListener('focus', handleFocus);
+
   animate();
 
   onUnmounted(() => {
+    window.removeEventListener('resize', updateViewport);
     document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseleave', handleMouseLeave);
+    window.removeEventListener('blur', handleBlur);
+    window.removeEventListener('focus', handleFocus);
+
+    if (animationId) cancelAnimationFrame(animationId);
   });
 });
 </script>
 
 <template>
-  <!-- 👇 le composant n’existe pas du tout si l’écran est petit -->
-  <template v-if="isVisible">
-    <div ref="cursorRef" class="cursor"></div>
-    <div ref="cursor2Ref" class="cursor2"></div>
-  </template>
+  <!-- ⚠️ Toujours présent dans le DOM -->
+  <div ref="cursorRef" class="cursor"></div>
+  <div ref="cursor2Ref" class="cursor2"></div>
 </template>
 
 <style>
@@ -71,7 +120,7 @@ onMounted(() => {
   height: 18px;
   border-radius: 50%;
   background: var(--accent-color);
-  opacity: 0.9;
+  opacity: 0;
   pointer-events: none;
   z-index: 10000;
   will-change: transform;
@@ -86,10 +135,10 @@ onMounted(() => {
   border-radius: 50%;
   border: 1px solid var(--accent-color);
   background: transparent;
-  opacity: 0.5;
+  opacity: 0;
   pointer-events: none;
   z-index: 9999;
   will-change: transform;
-  transition: width .18s ease, height .18s ease, border-color .18s ease;
+  transition: width 0.18s ease, height 0.18s ease, border-color 0.18s ease;
 }
 </style>
